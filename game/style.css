@@ -1,0 +1,20 @@
+body{
+  padding: 0;
+  margin: 0;
+}
+#ui{
+  position: fixed;
+  z-index: 1;
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+  display: flex;
+  align-content: flex-end;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+#orb { 
+  font-size: 96.69px;
+  padding: 10pt;
+  opacity: 50%;
+ }
