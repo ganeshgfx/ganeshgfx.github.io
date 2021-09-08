@@ -48,9 +48,11 @@ var x = 0,  //initial x
     friction = 0.85, // friction
     key = '',
 	keys = false;
+
 init();
 //render(); // remove when using next line for animation loop (requestAnimationFrame)
 animate();
+
 function init() {
 
 	scene = new THREE.Scene();
@@ -195,4 +197,124 @@ function animate() {
 	}
 	if (wasd[D]) {
 		// x+=speed;
-		if (velX
+		if (velX < speed) {
+            velX++;
+        }
+	}
+	if (wasd[A]) {
+		//x-=speed;
+		if (velX > -speed) {
+            velX--;
+        }
+	}
+
+	if (orbTouched) {
+		velX += speed/3 * Math.cos(rad);
+		velY += speed/3 * Math.sin(rad);
+
+		//playerPos.x = x;
+		//playerPos.y = y;
+		//playerMovement(playerPos);
+	}
+
+	velY *= friction;
+    y += velY;
+    velX *= friction;
+    x += velX;
+
+	playerPos.x = x;
+	playerPos.y = y;
+
+	playerMovementKey(playerPos);
+
+
+	// if (orbTouched) {
+	// 	x += speed * Math.cos(rad);
+	// 	y += speed * Math.sin(rad);
+
+	// 	playerPos.x = x;
+	// 	playerPos.y = y;
+	// 	playerMovement(playerPos);
+	// }
+
+    //bounds checking
+    // if (x >= 500) {
+    //     x = 500;
+    // } else if (x <= 5) {
+    //     x = 5;
+    // }
+
+    // if (y > 500) {
+    //     y = 500;
+    // } else if (y <= 5) {
+    //     y = 5;
+    // }
+
+
+	// if (keypress){
+	// 	playerMovementK(playerPos);
+	// }
+	//playerMovementK(playerPos);
+	//document.querySelector('#log').innerHTML=""+xr;
+
+	//camera.rotation.y += 0.004;
+	// camera.rotation.z += 0.002;
+	//controls.update(); // only required if controls.enableDamping = true, or if controls.autoRotate = true
+	render();
+
+}
+function playerMovement(pos){
+	pSphere.position.x = pos.x;
+	pSphere.position.z = pos.y;
+	camera.position.x = pSphere.position.x;
+	camera.position.z = pSphere.position.z;
+}
+function playerMovementKey(pos){
+	pSphere.position.x = pos.x;
+	pSphere.position.z = pos.y;
+	camera.position.x = pSphere.position.x;
+	camera.position.z = pSphere.position.z;
+}
+function render() {
+
+	renderer.render(scene, camera);
+
+}
+
+// key events
+//setTimeout(function () {
+	document.body.onkeypress = function (e) {
+		keydown(e);
+	};
+	function keydown(e) {
+		//requestAnimationFrame(keydown);
+		key = e.key;
+		keys = true;
+		
+		if(e.key=='w')
+			wasd[W]=true;
+		if(e.key=='a')
+			wasd[A]=true;
+		if(e.key=='s')
+			wasd[S]=true;
+		if(e.key=='d')
+			wasd[D]=true;
+
+		//console.log(wasd);
+	}
+	document.body.addEventListener("keyup", function (e) {
+		keys = false;
+		//console.log(e.key);
+
+		if(e.key=='w')
+			wasd[W]=false;
+		if(e.key=='a')
+			wasd[A]=false;
+		if(e.key=='s')
+			wasd[S]=false;
+		if(e.key=='d')
+			wasd[D]=false;
+
+	});
+//}, 0);
+
