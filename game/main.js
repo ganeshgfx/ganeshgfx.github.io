@@ -28,11 +28,28 @@ var x = 0,  //initial x
     friction = 0.85, // friction
     key = '',
 	keys = false;
-
+fullSrc();
 init();
 //render(); // remove when using next line for animation loop (requestAnimationFrame)
 animate();
-
+function fullSrc(){
+	var el = document.documentElement
+    , rfs = // for newer Webkit and Firefox
+           el.requestFullscreen
+        || el.webkitRequestFullScreen
+        || el.mozRequestFullScreen
+        || el.msRequestFullscreen
+;
+if(typeof rfs!="undefined" && rfs){
+  rfs.call(el);
+} else if(typeof window.ActiveXObject!="undefined"){
+  // for Internet Explorer
+  var wscript = new ActiveXObject("WScript.Shell");
+  if (wscript!=null) {
+     wscript.SendKeys("{F11}");
+  }
+}
+}
 function init() {
 
 	scene = new THREE.Scene();
