@@ -1,0 +1,9 @@
+body {
+	font-family: "Noto Sans Display", sans-serif;
+	background-color: #000000ce;
+}
+.flex {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
