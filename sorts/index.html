@@ -40,6 +40,9 @@
 			input {
 				width: "100%";
 			}
+			.gist-meta {
+				display: none;
+			}
 			/* pre {
 				overflow: auto;
 			}
@@ -191,5 +194,15 @@
 			});
 			return out;
 		}
+		function observer() {
+			let gist = document.getElementsByClassName("gist-data");
+
+			for (let index = 0; index < gist.length; index++) {
+				const child = gist[index];
+				child.style = "border-radius: 6px 6px 6px 6px;";
+				console.log(child);
+			}
+		}
+		observer();
 	</script>
 </html>
