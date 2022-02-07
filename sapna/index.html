@@ -15,10 +15,17 @@
 		/>
 		<link rel="stylesheet" href="style.css" />
 		<script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
+		<script
+			src="https://kit.fontawesome.com/da9dabfa40.js"
+			crossorigin="anonymous"
+		></script>
 		<title>Dream</title>
 	</head>
 
 	<body>
+		<div id="loading" class="loading">
+			<i class="fas fa-hourglass-half"></i>
+		</div>
 		<div id="particlse" style="display: none"></div>
 		<div class="main">
 			<div class="inputBox form-group" id="pass">
@@ -31,8 +38,28 @@
 					id="passW"
 				/>
 			</div>
+			<button id="goButton">GO...!👍</button>
+			<br />
+			<div id="hintDiv" style="display: none">
+				<div id="hint">Hint...</div>
+				<div id="hintBody">
+					Ham or tum ek sath ho to koi bhi band tala khul jaye.
+				</div>
+			</div>
 		</div>
+
+		<div id="msg" style="opacity: 0">
+			<div id="msgTitle">This is only for you...</div>
+			<div id="msgbody">
+				<i
+					>Thank you... for holding my hands to complete this
+					journey of life 👨‍❤️‍👨. </i
+				><br />I LOVE YOU Sapna...💖
+			</div>
+		</div>
+		<div></div>
 	</body>
+
 	<script
 		src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -49,4 +76,6 @@
 		crossorigin="anonymous"
 	></script>
 	<script src="main.js"></script>
+
+	<script src="firebase.js" type="module"></script>
 </html>

@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap");
 body {
 	padding: 0px;
 	margin: 0px;
@@ -11,7 +12,7 @@ body {
 	flex-direction: column;
 	background: #bbded6;
 	font-family: "Satisfy", cursive;
-	/* overflow: hidden; */
+	overflow: hidden;
 }
 
 input::placeholder {
@@ -33,6 +34,12 @@ input::placeholder {
 .main {
 	width: 70vw;
 	z-index: 2;
+	margin-bottom: 25vh;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
 }
 
 .inputBox {
@@ -48,13 +55,59 @@ input::placeholder {
 .inputBox input:focus {
 	background-color: #ffb6b9 !important;
 	border: none;
+	color: #620004 !important;
 }
-
+#particlse {
+	position: absolute;
+}
 #particlse div {
 	z-index: 3;
 	height: 10px;
 	width: 10px;
 	/* background-color: red; */
 	position: absolute;
-	text-shadow: 0px 0px 4px;
+	/* text-shadow: 0px 0px 4px; */
+}
+.loading {
+	color: #e77477;
+	display: flex;
+	z-index: 10;
+	position: absolute;
+	font-size: xxx-large;
+	text-align: center;
+	vertical-align: middle;
+	line-height: initial;
+}
+button {
+	-webkit-border-radius: 60;
+	-moz-border-radius: 60;
+	border-radius: 60px;
+	font-family: Arial;
+	color: #5a0000;
+	font-size: 20px;
+	background: #ffaaa5;
+	padding: 15px 24px 15px 24px;
+	text-decoration: none;
+	border: none;
+}
+#hint {
+	font-size: xx-large;
+	color: #3c4589;
+}
+#hintBody {
+	font-family: "Amatic SC", cursive;
+	font-size: x-large;
+	color: #a90048;
+	font-size: arial;
+}
+#msg {
+	position: absolute;
+	text-align: center;
+}
+#msgTitle {
+	font-size: xxx-large;
+}
+#msgbody {
+	font-family: "Amatic SC", cursive;
+	font-size: xx-large;
 }
