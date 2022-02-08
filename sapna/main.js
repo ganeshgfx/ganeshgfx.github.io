@@ -51,7 +51,7 @@ goButton.addEventListener("click", function () {
 		});
 	} else {
 		wrongCount++;
-		if (wrongCount > 2) {
+		if (wrongCount > 4) {
 			document.getElementById("hintDiv").style = "display:block;";
 		}
 		angle = 10;
