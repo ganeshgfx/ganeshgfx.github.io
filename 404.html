@@ -47,7 +47,7 @@
       </p>
     </div>
     <div class="divBack">
-      <p style="align-items: center">🤧 404 : वेबसाइट स्थान नहीं मिला</p>
+      <!-- <p style="align-items: center">🤧 404 : वेबसाइट स्थान नहीं मिला</p> -->
     </div>
 
     <script>
@@ -87,11 +87,8 @@
           event.rotationRate.gamma
         ) {
           gyroPresent = true;
-          log(
-            event.rotationRate.alpha,
-            event.rotationRate.beta,
-            event.rotationRate.gamma
-          );
+          mX = event.rotationRate.beta;
+          mY = event.rotationRate.gamma;
         }
       });
 
@@ -99,7 +96,7 @@
         ax1 = event.accelerationIncludingGravity.x * 5;
         ay1 = event.accelerationIncludingGravity.y * 5;
         //console.log(ax1, ay1);
-		text.innerHTML = `${ax1} : ${ay1}`;
+		text.innerHTML = `${mX} : ${mY}`;
       };
     </script>
   </body>
