@@ -68,7 +68,8 @@
     let xw = 0;
     let yw = 0;
 
-    const { offsetWidth: width, offsetHeight: height } = body;
+    let width = body.offsetWidth;
+    let height = body.offsetHeight;
 
     function mouse(e) {
       //console.log(e);
@@ -96,8 +97,12 @@
         event.rotationRate.gamma
       ) {
         gyroPresent = true;
-        mX = lerp(event.rotationRate.beta, mX, 0.1);
-        mY = lerp(event.rotationRate.gamma, mY, 0.1);
+
+        gx = Math.round(event.rotationRate.beta);
+        gy = Math.round(event.rotationRate.gamma);
+
+        mX = lerp(gx, mX, 0.1);
+        mY = lerp(gy, mY, 0.1);
 
         text.innerHTML = `${mX} : ${mY}`;
       }
@@ -121,6 +126,9 @@
       	${ywalk}px ${xwalk}px 0 #6BCB77,
       	${ywalk * -1}px ${xwalk * -1}px 0 #4D96FF
       	`;
+
+      width = body.offsetWidth;
+      height = body.offsetHeight;
       requestAnimationFrame(repeatOften);
     }
     requestAnimationFrame(repeatOften);
