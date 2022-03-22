@@ -98,8 +98,8 @@
       ) {
         gyroPresent = true;
 
-        gx = Math.round(event.rotationRate.beta);
-        gy = Math.round(event.rotationRate.gamma);
+        gx = Math.round(event.rotationRate.beta + Number.EPSILON * 100 / 100);
+        gy = Math.round(event.rotationRate.gamma + Number.EPSILON * 100 / 100);
 
         mX = lerp(gx, mX, 0.1);
         mY = lerp(gy, mY, 0.1);
