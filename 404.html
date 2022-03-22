@@ -93,8 +93,8 @@
       });
 
       window.ondevicemotion = function (e) {
-        ax1 = event.accelerationIncludingGravity.x * 5;
-        ay1 = event.accelerationIncludingGravity.y * 5;
+        ax1 =  Math.round(event.accelerationIncludingGravity.x * 5);
+        ay1 =  Math.round(event.accelerationIncludingGravity.y * 5);
         //console.log(ax1, ay1);
 		text.innerHTML = `${mX} : ${mY}`;
       };
