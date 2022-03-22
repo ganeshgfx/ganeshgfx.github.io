@@ -1,103 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
-      rel="stylesheet"
-    />
-    <title>404</title>
-    <style>
-      body {
-        font-weight: bolder;
-        height: 100vh;
-        width: 100vw;
-        flex-direction: row;
-        align-content: center;
-        justify-content: center;
-        background: #46244c;
-        color: #d49b54;
-        font-size: x-large;
-        font-family: "Poppins", sans-serif;
-        margin: 0px;
-        padding: 0px;
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet" />
+  <title>404</title>
+  <style>
+    body {
+      font-weight: bolder;
+      height: 100vh;
+      width: 100vw;
+      flex-direction: row;
+      align-content: center;
+      justify-content: center;
+      background: #46244c;
+      color: #d49b54;
+      font-size: x-large;
+      font-family: "Poppins", sans-serif;
+      margin: 0px;
+      padding: 0px;
+    }
+
+    div {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+    }
+
+    .divBack {
+      z-index: -1;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main" onmousemove="mouse(event);" to="mouse(event);">
+    <p id="textP" style="align-items: center">
+      🤧 404 : वेबसाइट स्थान नहीं मिला
+    </p>
+  </div>
+  <div class="divBack">
+    <!-- <p style="align-items: center">🤧 404 : वेबसाइट स्थान नहीं मिला</p> -->
+  </div>
+
+  <script>
+    const text = document.getElementById("textP");
+    const body = document.getElementById("main");
+    const walk = 100;
+
+    let xwalk = 0;
+    let ywalk = 0;
+
+    let x = 0;
+    let y = 0;
+
+    let mX = 0;
+    let mY = 0;
+
+    let xw = 0;
+    let yw = 0;
+
+    const { offsetWidth: width, offsetHeight: height } = body;
+
+    function mouse(e) {
+      //console.log(e);
+
+      let { offsetX: x, offsetY: y } = e;
+
+      if (this !== e.target) {
+        x = x + e.target.offsetLeft;
+        y = y + e.target.offsetTop;
       }
-      div {
-        display: flex;
-        height: 100%;
-        width: 100%;
-        align-content: center;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
+
+      xw = Math.round((x / width) * walk - walk / 2);
+      yw = Math.round((y / height) * walk - walk / 2);
+
+
+      //console.log(xwalk,ywalk);
+      //console.log(x, y, ":", width, height);
+    }
+
+    var gyroPresent = false;
+    window.addEventListener("devicemotion", function (event) {
+      if (
+        event.rotationRate.alpha ||
+        event.rotationRate.beta ||
+        event.rotationRate.gamma
+      ) {
+        gyroPresent = true;
+        mX = lerp(event.rotationRate.beta, mX, 0.1);
+        mY = lerp(event.rotationRate.gamma, mY, 0.1);
+
+        text.innerHTML = `${mX} : ${mY}`;
       }
-      .divBack {
-        z-index: -1;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="main" onmousemove="mouse(event);" to="mouse(event);">
-      <p id="textP" style="align-items: center">
-        🤧 404 : वेबसाइट स्थान नहीं मिला
-      </p>
-    </div>
-    <div class="divBack">
-      <!-- <p style="align-items: center">🤧 404 : वेबसाइट स्थान नहीं मिला</p> -->
-    </div>
+    });
 
-    <script>
-      const text = document.getElementById("textP");
-      const body = document.getElementById("main");
-      const walk = 100;
-      function mouse(e) {
-        //console.log(e);
-        const { offsetWidth: width, offsetHeight: height } = body;
+    function lerp(start, end, amt) {
+      return (1 - amt) * start + amt * end
+    }
 
-        let { offsetX: x, offsetY: y } = e;
+    function repeatOften() {
+      // Do whatever
 
-        if (this !== e.target) {
-          x = x + e.target.offsetLeft;
-          y = y + e.target.offsetTop;
-        }
 
-        const xwalk = Math.round((x / width) * walk - walk / 2);
-        const ywalk = Math.round((y / height) * walk - walk / 2);
-        //console.log(xwalk,ywalk);
-        text.style.textShadow = `
+
+      xwalk = lerp(xwalk, xw, 0.1);
+      ywalk = lerp(ywalk, yw, 0.1);
+
+      text.style.textShadow = `
       	${xwalk}px ${ywalk}px 0 #FF6B6B,
       	${xwalk * -1}px ${ywalk * -1}px 0 #FFD93D,
       	${ywalk}px ${xwalk}px 0 #6BCB77,
       	${ywalk * -1}px ${xwalk * -1}px 0 #4D96FF
       	`;
-        //console.log(x, y, ":", width, height);
-      }
-      let mX = 0;
-      let mY = 0;
+      requestAnimationFrame(repeatOften);
+    }
+    requestAnimationFrame(repeatOften);
+  </script>
+</body>
 
-      var gyroPresent = false;
-      window.addEventListener("devicemotion", function (event) {
-        if (
-          event.rotationRate.alpha ||
-          event.rotationRate.beta ||
-          event.rotationRate.gamma
-        ) {
-          gyroPresent = true;
-          mX = event.rotationRate.beta;
-          mY = event.rotationRate.gamma;
-        }
-      });
-
-      window.ondevicemotion = function (e) {
-        ax1 =  Math.round(event.accelerationIncludingGravity.x * 5);
-        ay1 =  Math.round(event.accelerationIncludingGravity.y * 5);
-        //console.log(ax1, ay1);
-		text.innerHTML = `${mX} : ${mY}`;
-      };
-    </script>
-  </body>
 </html>
