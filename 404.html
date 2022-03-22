@@ -1,40 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
-			rel="stylesheet"
-		/>
-		<title>Document</title>
-	</head>
-	<body
-		style="
-			display: flex;
-			height: 100vh;
-			width: 100vw;
-			flex-direction: row;
-			align-content: center;
-			justify-content: center;
-			background: #00c897;
-			color: #ffd365;
-			font-size: x-large;
-			font-family: 'Poppins', sans-serif;
-		"
-	>
-		<div
-			style="
-				display: flex;
-				align-content: center;
-				justify-content: center;
-				align-items: center;
-			"
-		>
-			<p style="align-items: center">🤧 404 : वेबसाइट स्थान नहीं मिला</p>
-		</div>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <title>404</title>
+    <style>
+      body {
+        font-weight: bolder;
+        height: 100vh;
+        width: 100vw;
+        flex-direction: row;
+        align-content: center;
+        justify-content: center;
+        background: #46244c;
+        color: #d49b54;
+        font-size: x-large;
+        font-family: "Poppins", sans-serif;
+        margin: 0px;
+        padding: 0px;
+      }
+      div {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+      }
+      .divBack {
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main" onmousemove="mouse(event);" to="mouse(event);">
+      <p id="textP" style="align-items: center">
+        🤧 404 : वेबसाइट स्थान नहीं मिला
+      </p>
+    </div>
+    <div class="divBack">
+      <p style="align-items: center">🤧 404 : वेबसाइट स्थान नहीं मिला</p>
+    </div>
+
+    <script>
+      const text = document.getElementById("textP");
+      const body = document.getElementById("main");
+      const walk = 100;
+      function mouse(e) {
+        //console.log(e);
+        const { offsetWidth: width, offsetHeight: height } = body;
+
+        let { offsetX: x, offsetY: y } = e;
+
+        if (this !== e.target) {
+          x = x + e.target.offsetLeft;
+          y = y + e.target.offsetTop;
+        }
+
+        const xwalk = Math.round((x / width) * walk - walk / 2);
+        const ywalk = Math.round((y / height) * walk - walk / 2);
+        //console.log(xwalk,ywalk);
+        text.style.textShadow = `
+      	${xwalk}px ${ywalk}px 0 #FF6B6B,
+      	${xwalk * -1}px ${ywalk * -1}px 0 #FFD93D,
+      	${ywalk}px ${xwalk}px 0 #6BCB77,
+      	${ywalk * -1}px ${xwalk * -1}px 0 #4D96FF
+      	`;
+        //console.log(x, y, ":", width, height);
+      }
+      let mX = 0;
+      let mY = 0;
+
+      var gyroPresent = false;
+      window.addEventListener("devicemotion", function (event) {
+        if (
+          event.rotationRate.alpha ||
+          event.rotationRate.beta ||
+          event.rotationRate.gamma
+        ) {
+          gyroPresent = true;
+          log(
+            event.rotationRate.alpha,
+            event.rotationRate.beta,
+            event.rotationRate.gamma
+          );
+        }
+      });
+
+      window.ondevicemotion = function (e) {
+        ax1 = event.accelerationIncludingGravity.x * 5;
+        ay1 = event.accelerationIncludingGravity.y * 5;
+        //console.log(ax1, ay1);
+		text.innerHTML = `${ax1} : ${ay1}`;
+      };
+    </script>
+  </body>
 </html>
