@@ -98,11 +98,11 @@
       ) {
         gyroPresent = true;
 
-        gx = event.rotationRate.beta.toFixed(2);
-        gy = event.rotationRate.gamma.toFixed(2);
+        gx = event.rotationRate.beta;
+        gy = event.rotationRate.gamma;
 
-        mX = lerp(gx, mX, 0.1);
-        mY = lerp(gy, mY, 0.1);
+        mX = lerp(gx.toFixed(2), mX.toFixed(2), 0.1);
+        mY = lerp(gy.toFixed(2), mY.toFixed(2), 0.1);
 
         text.innerHTML = `${mX} : ${mY}`;
       }
