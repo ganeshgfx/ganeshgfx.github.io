@@ -68,6 +68,9 @@
     let xw = 0;
     let yw = 0;
 
+    let gx = 0;
+    let gy = 0;
+
     let width = body.offsetWidth;
     let height = body.offsetHeight;
 
@@ -89,6 +92,11 @@
       //console.log(x, y, ":", width, height);
     }
 
+    let motionDelay = true;
+    function stopMotionValue() {
+      motionDelay = true;
+    }
+
     var gyroPresent = false;
     window.addEventListener("devicemotion", function (event) {
       if (
@@ -98,18 +106,28 @@
       ) {
         gyroPresent = true;
 
-        gx = event.rotationRate.beta;
-        gy = event.rotationRate.gamma;
+        if (motionDelay) {
+          gx = event.rotationRate.beta * 100;
+          gy = event.rotationRate.gamma * 100;
+          motionDelay = false;
+          setTimeout(stopMotionValue, 200);
+        }
 
-        mX = lerp(gx.toFixed(2), mX.toFixed(2), 0.1);
-        mY = lerp(gy.toFixed(2), mY.toFixed(2), 0.1);
 
-        text.innerHTML = `${mX} : ${mY}`;
+
+        // gx = event.acceleration.x;
+        // gy = event.acceleration.y;
+
+
       }
     });
 
     function lerp(start, end, amt) {
       return (1 - amt) * start + amt * end
+    }
+    function xRound(num) {
+      return Math.round(num * 100) / 100;
+      //return Math.abs(num);
     }
 
     function repeatOften() {
@@ -120,12 +138,21 @@
       xwalk = lerp(xwalk, xw, 0.1);
       ywalk = lerp(ywalk, yw, 0.1);
 
+      if (gyroPresent) {
+
+      }
+
       text.style.textShadow = `
       	${xwalk}px ${ywalk}px 0 #FF6B6B,
       	${xwalk * -1}px ${ywalk * -1}px 0 #FFD93D,
       	${ywalk}px ${xwalk}px 0 #6BCB77,
       	${ywalk * -1}px ${xwalk * -1}px 0 #4D96FF
       	`;
+
+      mX = xRound(lerp(gx, mX, 0.5));
+      mY = xRound(lerp(gy, mY, 0.5));
+
+      text.innerHTML = `${mX} : ${mY} : ${gyroPresent}`;
 
       width = body.offsetWidth;
       height = body.offsetHeight;
