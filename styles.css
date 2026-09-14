@@ -224,6 +224,87 @@ nav.nav-hidden {
   line-height: 1;
 }
 
+/* ── Hero animated orbs (left dark panel) ───────────────────────────────────── */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(80px);
+  will-change: transform, opacity;
+}
+
+.hero-orb--1 {
+  width: clamp(280px, 30vw, 460px);
+  height: clamp(280px, 30vw, 460px);
+  left: -8%;
+  top: 10%;
+  background: radial-gradient(circle, rgba(16,200,191,.18) 0%, transparent 70%);
+  animation: orb-float-a 9s ease-in-out infinite;
+}
+
+.hero-orb--2 {
+  width: clamp(180px, 22vw, 340px);
+  height: clamp(180px, 22vw, 340px);
+  left: 12%;
+  top: 52%;
+  background: radial-gradient(circle, rgba(16,200,191,.10) 0%, transparent 70%);
+  animation: orb-float-b 13s ease-in-out infinite;
+  filter: blur(100px);
+}
+
+.hero-orb--3 {
+  width: clamp(120px, 14vw, 200px);
+  height: clamp(120px, 14vw, 200px);
+  left: 22%;
+  top: 20%;
+  background: radial-gradient(circle, rgba(239,239,239,.07) 0%, transparent 70%);
+  animation: orb-float-c 7s ease-in-out infinite;
+  filter: blur(50px);
+}
+
+/* Slow horizontal scan line sweeping down the left area */
+.hero-scan {
+  position: absolute;
+  left: 0;
+  right: 62%;           /* confined to the left dark panel */
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(16,200,191,.35) 30%,
+    rgba(16,200,191,.6) 55%,
+    rgba(16,200,191,.35) 80%,
+    transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+  animation: scan-down 6s linear infinite;
+  box-shadow: 0 0 12px 2px rgba(16,200,191,.2);
+}
+
+@keyframes orb-float-a {
+  0%, 100% { transform: translate(0,   0  ) scale(1);    opacity: 1;   }
+  33%       { transform: translate(30px,-40px) scale(1.08); opacity: .8; }
+  66%       { transform: translate(-20px,30px) scale(.96); opacity: .9; }
+}
+
+@keyframes orb-float-b {
+  0%, 100% { transform: translate(0,   0  ) scale(1);    opacity: .9; }
+  40%       { transform: translate(-35px,-25px) scale(1.1); opacity: .7; }
+  70%       { transform: translate(20px, 40px) scale(.92); opacity: 1;  }
+}
+
+@keyframes orb-float-c {
+  0%, 100% { transform: translate(0,  0  ) scale(1);   opacity: .7; }
+  50%       { transform: translate(25px,-30px) scale(1.15); opacity: .5; }
+}
+
+@keyframes scan-down {
+  0%   { top: 8%;   opacity: 0;   }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { top: 92%;  opacity: 0;   }
+}
+
 /* decorative vertical line */
 .hero-vline {
   position: absolute;
