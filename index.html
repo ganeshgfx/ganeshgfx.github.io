@@ -1,138 +1,433 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Main page - Ganesh GFX</title>
-		<meta charset="UTF-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0"
-		/>
-		<meta
-			name="description"
-			content="This is my portfolio website. here i showcase my projects,programs and other stuff"
-		/>
-		<meta property="og:title" content="Ganesh GFX" />
-		<meta property="og:site_name" content="ganeshgfx " />
-		<meta property="og:url" content="www.ganeshgfx.me/" />
-		<meta
-			property="og:description"
-			content="This is my portfolio website. here i showcase my projects,programs and other stuff."
-		/>
-		<meta property="og:type" content="website" />
-		<meta
-			property="og:image"
-			content="https://ganeshgfx.me/assets/profile.jpg"
-		/>
-		<link
-			rel="icon"
-			type="image/svg"
-			href="/assets/people-circle-outline.svg"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-		/>
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display&display=swap"
-			rel="stylesheet"
-		/>
-		<link rel="stylesheet" href="styles.css" />
 
-		<script
-			type="module"
-			crossorigin
-			src="/assets/index.ab304951.js"
-		></script>
-		<link rel="modulepreload" href="/assets/vendor.e10acb6c.js" />
-		<link rel="stylesheet" href="/assets/index.438c40ee.css" />
-	</head>
-	<body id="boddy">
-		<div class="maindiv">
-			<h4 class="flex" style="color: rgb(255, 0, 34)">
-				<b>This website is under construction.&nbsp; </b
-				><ion-icon name="construct-outline"></ion-icon>
-			</h4>
-			<p class="flex">Contact me at : &nbsp;</p>
-			<p>
-				<a
-					class="btn btn btn-dark flex pt"
-					href="https://www.instagram.com/ganesh.gfx/"
-					><ion-icon name="logo-instagram"></ion-icon
-					>&nbsp;ganesh.gfx</a
-				>
-				<a
-					class="btn btn btn-dark flex pt"
-					href="https://github.com/ganeshgfx"
-					><ion-icon name="logo-github"></ion-icon
-					>&nbsp;ganeshgfx</a
-				>
-				<a
-					class="btn btn btn-dark flex pt"
-					href="mailto:ganeshghutiay@gmail.com"
-					><ion-icon name="mail-open-sharp"></ion-icon
-					>&nbsp;ganeshghutiya</a
-				>
-			</p>
-			<h4>Mean while checkout my my projects :</h4>
-			<div>
-				<p>
-					<a href="../sorts/">
-						<button class="btn btn-dark">Click Here !</button>
-					</a>
-					To Learn Algorithms&nbsp;<ion-icon
-						name="git-network-outline"
-					></ion-icon>
-				</p>
-				<p>
-					<a href="../game/">
-						<button class="btn btn-dark">
-							Click Here !
-						</button> </a
-					>To play Game&nbsp;
-					<ion-icon name="game-controller-outline"></ion-icon>
-				</p>
-				<p>
-					<a href="../tt/">
-						<button class="btn btn-dark">
-							Click Here !
-						</button> </a
-					>For other stuff&nbsp;
-					<ion-icon name="calendar-outline"></ion-icon>
-				</p>
-			</div>
-		</div>
-		<canvas id="bg"></canvas>
-		<script
-			type="module"
-			src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-		></script>
-		<script
-			nomodule
-			src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-		></script>
-		<div
-			style="
-				height: -webkit-fill-available;
-				display: flex;
-				position: absolute;
-				width: -webkit-fill-available;
-				align-items: flex-end;
-				justify-content: flex-end;
-				margin: 5px;
-			"
-		>
-			<img
-				style="
-					height: 19px;
-					width: 19px;
-					border-radius: 5px;
-					margin: 2px;
-				"
-				src="./assets/profile.jpg"
-				alt="Ganesh GFX"
-			/>
-		</div>
-	</body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ganesh Ghutiya — Filmmaker · Developer · VFX</title>
+  <meta name="description"
+    content="Portfolio of Ganesh Ghutiya — Creative professional and Tech Lead at Gravity Films. Filmmaker, VFX artist, web & app developer, graphic designer." />
+  <meta property="og:title" content="Ganesh Ghutiya — GaneshGFX" />
+  <meta property="og:url" content="https://ganeshgfx.github.io/" />
+  <meta property="og:description"
+    content="Filmmaker · VFX Artist · Tech Lead at Gravity Films. Creativity is my vision. Technology is my tool." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://ganeshgfx.github.io/assets/profile.jpg" />
+  <link rel="icon" type="image/svg+xml" href="/assets/people-circle-outline.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <canvas id="noise-canvas" aria-hidden="true"></canvas>
+
+  <!-- ── Nav ──────────────────────────────────────────────────────────────────── -->
+  <nav id="main-nav" role="navigation" aria-label="Main navigation">
+    <a href="#hero" class="nav-logo" id="nav-logo">
+      <span class="nav-logo-dot" aria-hidden="true"></span>
+      GaneshGFX
+    </a>
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <ul class="nav-links" role="list">
+      <li><a href="#about" id="nav-about">About</a></li>
+      <li><a href="#skills" id="nav-skills">Skills</a></li>
+      <li><a href="#projects" id="nav-projects">Projects</a></li>
+      <li><a href="#contact" id="nav-contact">Contact</a></li>
+    </ul>
+    <label for="nav-toggle" class="nav-hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </label>
+  </nav>
+
+  <!-- ── Hero ─────────────────────────────────────────────────────────────────── -->
+  <section id="hero" aria-label="Hero">
+    <!-- Ghost decoration -->
+    <span class="hero-ghost" aria-hidden="true">GFX</span>
+
+    <!-- Right photo panel -->
+    <div class="hero-photo-wrap" aria-hidden="true">
+      <img class="hero-photo" src="./assets/profileHD.png" alt="" />
+      <div class="hero-photo-overlay"></div>
+    </div>
+    <div class="hero-vline" aria-hidden="true"></div>
+
+    <!-- Main content -->
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Based in India &nbsp;·&nbsp; Available worldwide</p>
+        <h1 class="hero-name">
+          <span>Ganesh</span>
+          <span>GFX</span>
+        </h1>
+        <p class="hero-role"><span id="role-ticker"></span></p>
+        <p class="hero-tagline">
+          Creativity is my vision.<br>Technology is my tool.<br>Excellence is my goal.
+        </p>
+      </div>
+    </div>
+
+    <!-- Stats strip -->
+    <div class="hero-stats" aria-label="Quick stats">
+      <div class="hero-stat">
+        <span class="stat-num">5+</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num">50+</span>
+        <span class="stat-label">Projects Delivered</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num">3</span>
+        <span class="stat-label">Disciplines</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num">∞</span>
+        <span class="stat-label">Ideas in Motion</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Marquee ───────────────────────────────────────────────────────────────── -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <!-- duplicated for seamless loop -->
+      <span class="marquee-item">Filmmaking <span class="marquee-dot"></span></span>
+      <span class="marquee-item">VFX &amp; CGI <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Cinematography <span class="marquee-dot"></span></span>
+      <span class="marquee-item">3D Animation <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Motion Graphics <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Web Development <span class="marquee-dot"></span></span>
+      <span class="marquee-item">App Development <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Graphic Design <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Digital Marketing <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Sound Design <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Brand Strategy <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Color Grading <span class="marquee-dot"></span></span>
+      <!-- duplicate -->
+      <span class="marquee-item">Filmmaking <span class="marquee-dot"></span></span>
+      <span class="marquee-item">VFX &amp; CGI <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Cinematography <span class="marquee-dot"></span></span>
+      <span class="marquee-item">3D Animation <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Motion Graphics <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Web Development <span class="marquee-dot"></span></span>
+      <span class="marquee-item">App Development <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Graphic Design <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Digital Marketing <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Sound Design <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Brand Strategy <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Color Grading <span class="marquee-dot"></span></span>
+    </div>
+  </div>
+
+  <!-- ── About ─────────────────────────────────────────────────────────────────── -->
+  <section id="about" aria-labelledby="about-heading">
+    <div class="container">
+      <p class="sec-label reveal">01 — About</p>
+
+      <div class="about-grid">
+        <!-- Photo -->
+        <div class="about-photo-wrap reveal">
+          <img class="about-photo" src="./assets/profileHD.png" alt="Ganesh GFX" loading="lazy" />
+          <div class="about-photo-frame" aria-hidden="true"></div>
+          <div class="about-photo-badge">
+            <span class="badge-dot" aria-hidden="true"></span>
+            Tech Lead · Gravity Films
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div>
+          <h2 class="sec-title reveal" id="about-heading">
+            Creative&nbsp;professional.<br>Technology&nbsp;enthusiast.
+          </h2>
+
+          <p class="about-bio reveal">
+            I'm <strong>Ganesh Ghutiya</strong> — a creative professional passionate about
+            transforming ideas into impactful visual experiences and digital solutions.
+            With a strong interest in <strong>filmmaking, cinematography, video editing,
+              VFX, CGI, animation</strong> and <strong>graphic design</strong>, I bring
+            creativity and technical expertise together to tell compelling stories and
+            build engaging brands.
+          </p>
+          <p class="about-bio reveal reveal-delay-1">
+            I also work in <strong>website development, app development, digital marketing</strong>
+            and <strong>software solutions</strong> — combining design and technology to
+            create practical, innovative results. Whether crafting a cinematic visual,
+            developing a digital product, or building a brand from scratch, I'm always
+            focused on learning, experimenting, and delivering work that makes a difference.
+          </p>
+
+          <!-- Gravity Films -->
+          <div class="about-gravity reveal reveal-delay-2">
+            <p class="gravity-label">
+              <span aria-hidden="true">●</span>&nbsp; Gravity Films — Tech Lead
+            </p>
+            <p class="gravity-text">
+              A content creation and commercial production house specialising in filmmaking,
+              sound design, GFX, VFX, graphics, animation, digital marketing and product branding.
+              As Tech Lead I oversee all technology, programming, VFX, 3D, editing and graphic design workflows.
+            </p>
+          </div>
+
+          <div class="about-links reveal reveal-delay-3">
+            <a href="https://github.com/ganeshgfx" id="link-github" target="_blank" rel="noopener" class="about-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+              </svg>
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/ganeshgfx/" id="link-linkedin" target="_blank" rel="noopener"
+              class="about-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+              LinkedIn
+            </a>
+            <a href="https://www.instagram.com/ganesh.gfx/" id="link-instagram" target="_blank" rel="noopener"
+              class="about-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+              </svg>
+              Instagram
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Skills ─────────────────────────────────────────────────────────────────── -->
+  <section id="skills" aria-labelledby="skills-heading">
+    <div class="container">
+      <p class="sec-label reveal">02 — Skills</p>
+
+      <div class="skills-layout">
+        <div class="skills-sidebar reveal">
+          <h2 class="skills-sidebar-title" id="skills-heading">What<br>I do.</h2>
+          <p class="skills-sidebar-desc">
+            A multidisciplinary mix of creative craft and technical precision — from the lens to the screen, from the
+            canvas to the code.
+          </p>
+        </div>
+
+        <div class="skills-groups">
+          <div class="skill-group reveal">
+            <div class="skill-group-header">
+              <span class="skill-group-label">Creative &amp; Production</span>
+              <span class="skill-group-count">12 disciplines</span>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Filmmaking</span>
+              <span class="skill-tag">Cinematography</span>
+              <span class="skill-tag">Video Editing</span>
+              <span class="skill-tag">VFX</span>
+              <span class="skill-tag">CGI</span>
+              <span class="skill-tag">3D Animation</span>
+              <span class="skill-tag">Motion Graphics</span>
+              <span class="skill-tag">Graphic Design</span>
+              <span class="skill-tag">Sound Design</span>
+              <span class="skill-tag">Lighting Engineering</span>
+              <span class="skill-tag">Color Grading</span>
+              <span class="skill-tag">Storyboarding</span>
+            </div>
+          </div>
+
+          <div class="skill-group reveal reveal-delay-1">
+            <div class="skill-group-header">
+              <span class="skill-group-label">Technology &amp; Development</span>
+              <span class="skill-group-count">9 disciplines</span>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Web Development</span>
+              <span class="skill-tag">App Development</span>
+              <span class="skill-tag">Software Solutions</span>
+              <span class="skill-tag">Android · Kotlin</span>
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">HTML / CSS</span>
+              <span class="skill-tag">React</span>
+              <span class="skill-tag">Git / GitHub</span>
+              <span class="skill-tag">Programming</span>
+            </div>
+          </div>
+
+          <div class="skill-group reveal reveal-delay-2">
+            <div class="skill-group-header">
+              <span class="skill-group-label">Strategy &amp; Brand</span>
+              <span class="skill-group-count">6 disciplines</span>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Digital Marketing</span>
+              <span class="skill-tag">Brand Strategy</span>
+              <span class="skill-tag">Product Branding</span>
+              <span class="skill-tag">Content Management</span>
+              <span class="skill-tag">Project Direction</span>
+              <span class="skill-tag">Creative Direction</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Projects ──────────────────────────────────────────────────────────────── -->
+  <section id="projects" aria-labelledby="projects-heading">
+    <div class="container">
+      <p class="sec-label reveal">03 — Projects</p>
+      <h2 class="sec-title reveal" id="projects-heading">Selected work.</h2>
+
+      <div class="projects-grid reveal">
+        <!-- Featured: Gravity Films -->
+        <a href="https://www.instagram.com/gravityfilmsin/" id="proj-gravity" target="_blank" rel="noopener"
+          class="project-card featured" aria-label="Gravity Films">
+          <p class="project-card-num">01 — Production House</p>
+          <h3 class="project-card-title">Gravity Films</h3>
+          <p class="project-card-desc">Commercial content creation and production house. Specialising in filmmaking,
+            VFX, GFX, animation, sound design and digital marketing. As Tech Lead I oversee all technical and creative
+            digital workflows — from concept through final delivery.</p>
+          <span class="project-card-arrow">View on Instagram &nbsp;→</span>
+        </a>
+
+        <!-- Algorithm Visualiser -->
+        <a href="../sorts/" id="proj-sorts" class="project-card" aria-label="Algorithm Visualiser">
+          <p class="project-card-num">02 — Web App</p>
+          <h3 class="project-card-title">Algorithm Visualiser</h3>
+          <p class="project-card-desc">Interactive animations of sorting algorithms — built to learn and compare
+            complexity visually.</p>
+          <span class="project-card-arrow">Explore &nbsp;→</span>
+        </a>
+
+        <!-- Browser Game -->
+        <a href="../game/" id="proj-game" class="project-card" aria-label="Browser Game">
+          <p class="project-card-num">03 — Game</p>
+          <h3 class="project-card-title">Browser Game</h3>
+          <p class="project-card-desc">A playable browser-based game built with vanilla JavaScript. No downloads, no
+            installs.</p>
+          <span class="project-card-arrow">Play now &nbsp;→</span>
+        </a>
+
+        <!-- Experiments -->
+        <a href="../tt/" id="proj-tt" class="project-card" aria-label="Experiments">
+          <p class="project-card-num">04 — Sandbox</p>
+          <h3 class="project-card-title">Experiments</h3>
+          <p class="project-card-desc">Side experiments, prototypes and tools — a sandbox for trying new ideas across
+            code and design.</p>
+          <span class="project-card-arrow">Explore &nbsp;→</span>
+        </a>
+
+        <!-- Sapna -->
+        <a href="../sapna/" id="proj-sapna" class="project-card" aria-label="Sapna">
+          <p class="project-card-num">05 — Creative</p>
+          <h3 class="project-card-title">Sapna</h3>
+          <p class="project-card-desc">A creative project — part of the broader portfolio of cinematic and digital work
+            in progress.</p>
+          <span class="project-card-arrow">View &nbsp;→</span>
+        </a>
+
+        <!-- GitHub -->
+        <a href="https://github.com/ganeshgfx" id="proj-github" target="_blank" rel="noopener" class="project-card"
+          aria-label="More on GitHub">
+          <p class="project-card-num">06 — Open Source</p>
+          <h3 class="project-card-title">GitHub Repos</h3>
+          <p class="project-card-desc">Browse all open-source repositories, code experiments and contributions on
+            GitHub.</p>
+          <span class="project-card-arrow">github.com/ganeshgfx &nbsp;→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact ───────────────────────────────────────────────────────────────── -->
+  <section id="contact" aria-labelledby="contact-heading">
+    <div class="container">
+      <p class="sec-label reveal">04 — Contact</p>
+
+      <div class="contact-grid">
+        <div class="contact-left">
+          <p class="contact-intro reveal" id="contact-heading">
+            Got a project in mind?<br><strong>Let's make something remarkable together.</strong>
+          </p>
+          <a href="mailto:ganeshghutiya@gmail.com" id="cta-email" class="contact-cta reveal">
+            Send a message
+            <span class="contact-cta-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <div class="contact-right reveal">
+          <a href="mailto:ganeshghutiya@gmail.com" id="contact-email" class="contact-item">
+            <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+              aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+            </svg>
+            <div>
+              <p class="ci-label">Email</p>
+              <p class="ci-handle">ganeshghutiya@gmail.com</p>
+            </div>
+          </a>
+          <a href="https://github.com/ganeshgfx" id="contact-github" target="_blank" rel="noopener"
+            class="contact-item">
+            <svg class="ci-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+            </svg>
+            <div>
+              <p class="ci-label">GitHub</p>
+              <p class="ci-handle">@ganeshgfx</p>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/ganeshgfx/" id="contact-linkedin" target="_blank" rel="noopener"
+            class="contact-item">
+            <svg class="ci-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+            </svg>
+            <div>
+              <p class="ci-label">LinkedIn</p>
+              <p class="ci-handle">in/ganeshgfx</p>
+            </div>
+          </a>
+          <a href="https://www.instagram.com/ganesh.gfx/" id="contact-instagram-personal" target="_blank" rel="noopener"
+            class="contact-item">
+            <svg class="ci-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+            </svg>
+            <div>
+              <p class="ci-label">Instagram — Personal</p>
+              <p class="ci-handle">@ganesh.gfx</p>
+            </div>
+          </a>
+          <a href="https://www.instagram.com/gravityfilmsin/" id="contact-instagram-gf" target="_blank" rel="noopener"
+            class="contact-item">
+            <svg class="ci-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+            </svg>
+            <div>
+              <p class="ci-label">Instagram — Gravity Films</p>
+              <p class="ci-handle">@gravityfilmsin</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────────────────────────────── -->
+  <footer role="contentinfo">
+    <p class="footer-copy">© <span id="current-year"></span> Ganesh GFX</p>
+    <p class="footer-logo">GaneshGFX</p>
+    <p class="footer-gf">Gravity Films · Tech Lead</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+
 </html>
