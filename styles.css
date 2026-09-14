@@ -18,7 +18,7 @@
   --muted2: #888;
   --faint: #1a1a1a;
   --accent: #e8e8e8;
-  --gf-red: #c8102e;
+  --gf-red: #10c8bf;
   --font: 'Space Grotesk', sans-serif;
   --ease: cubic-bezier(.16, 1, .3, 1);
 }
@@ -33,6 +33,30 @@ body {
   color: var(--text);
   line-height: 1.65;
   overflow-x: hidden;
+}
+
+/* ── Scrollbars ─────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border2);
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border2) var(--bg);
 }
 
 /* ── Noise overlay ──────────────────────────────────────────────────────────── */
