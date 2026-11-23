@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /sapna/
 Allow: /
 
 Sitemap: https://ganeshgfx.github.io/sitemap.xml

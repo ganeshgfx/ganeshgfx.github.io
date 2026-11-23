@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick Comp Settings — Adobe After Effects CEP Extension · GaneshGFX</title>
+  <meta name="description"
+    content="Adobe After Effects extension panel by Ganesh Ghutiya. Inspect and modify composition settings in real time: resolution, framerate, timecode duration, and background color with unified undo." />
+  <meta name="keywords"
+    content="Quick Comp Settings, Adobe After Effects, CEP Extension, After Effects panel, ExtendScript, JSX, CSInterface, motion graphics, video editing, composition settings, AE plugin" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Ganesh Ghutiya" />
+  <link rel="canonical" href="https://ganeshgfx.github.io/quick-comp-settings/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Quick Comp Settings — Adobe After Effects Extension" />
+  <meta property="og:description"
+    content="Real-time composition settings editor for Adobe After Effects with instant preview and single-step undo." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://ganeshgfx.github.io/quick-comp-settings/" />
+  <meta property="og:image" content="https://ganeshgfx.github.io/assets/profileHD.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_IN" />
+  <meta property="og:site_name" content="GaneshGFX" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Quick Comp Settings — Adobe After Effects Extension" />
+  <meta name="twitter:description" content="Real-time composition settings editor for Adobe After Effects with instant preview and single-step undo." />
+  <meta name="twitter:image" content="https://ganeshgfx.github.io/assets/profileHD.jpg" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Quick Comp Settings",
+    "url": "https://ganeshgfx.github.io/quick-comp-settings/",
+    "description": "Adobe After Effects CEP extension panel by Ganesh Ghutiya. Inspect and modify composition settings in real time: resolution, framerate, timecode duration, and background color with unified undo.",
+    "operatingSystem": "Windows, macOS",
+    "applicationCategory": "MultimediaApplication",
+    "author": {
+      "@type": "Person",
+      "name": "Ganesh Ghutiya",
+      "url": "https://ganeshgfx.github.io/",
+      "sameAs": ["https://github.com/ganeshgfx"]
+    },
+    "codeRepository": "https://github.com/ganeshgfx/Quick_Comp_Settings",
+    "programmingLanguage": ["JavaScript", "ExtendScript"],
+    "isPartOf": { "@type": "WebSite", "name": "GaneshGFX Portfolio", "url": "https://ganeshgfx.github.io/" }
+  }
+  </script>
+
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+  <canvas id="noise-canvas" aria-hidden="true"></canvas>
+
+  <!-- Navigation -->
+  <header class="project-page-nav" role="banner">
+    <div class="nav-container">
+      <a href="/" class="nav-back-link" id="nav-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+        </svg>
+        Back to Portfolio
+      </a>
+      <a href="https://github.com/ganeshgfx/Quick_Comp_Settings" target="_blank" rel="noopener" class="nav-repo-btn" id="nav-github-repo">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+        </svg>
+        GitHub Repository
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main>
+    <section class="project-hero">
+      <div class="container">
+        <div class="project-eyebrow">
+          <span class="project-eyebrow-dot" aria-hidden="true"></span>
+          Adobe After Effects · CEP Extension · Open Source
+        </div>
+        <h1 class="project-hero-title">Quick Comp Settings</h1>
+        <p class="project-hero-lead">
+          A native-styled Adobe After Effects CEP extension panel that lets motion designers and video editors inspect
+          and modify composition properties in real time — resolution, framerate, duration timecode, and background
+          color — with instant preview and unified single-step undo.
+        </p>
+
+        <div class="project-hero-actions">
+          <a href="https://github.com/ganeshgfx/Quick_Comp_Settings" target="_blank" rel="noopener" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+            </svg>
+            View on GitHub
+          </a>
+          <a href="#install" class="btn-secondary">Installation &amp; Setup</a>
+          <a href="#features" class="btn-secondary">Explore Capabilities</a>
+        </div>
+
+        <div class="project-specs-grid" aria-label="Project technical specifications">
+          <div class="project-spec-card">
+            <p class="project-spec-label">AE Compatibility</p>
+            <p class="project-spec-value">CC 2019 – AE 2025 (CEP 9–11)</p>
+          </div>
+          <div class="project-spec-card">
+            <p class="project-spec-label">Host Bridge</p>
+            <p class="project-spec-value">CSInterface v11 + ExtendScript</p>
+          </div>
+          <div class="project-spec-card">
+            <p class="project-spec-label">Undo System</p>
+            <p class="project-spec-value">Single-Step Unified Ctrl+Z</p>
+          </div>
+          <div class="project-spec-card">
+            <p class="project-spec-label">Timecode Support</p>
+            <p class="project-spec-value">HH:MM:SS:FF Frame Validation</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="project-section" id="features">
+      <div class="container">
+        <p class="sec-label">01 — Features</p>
+        <h2 class="sec-title">Speed up repetitive composition edits.</h2>
+
+        <div class="project-feature-grid">
+          <div class="project-feature-card">
+            <span class="project-feature-num">01</span>
+            <h3 class="project-feature-title">Active Comp Auto-Detection</h3>
+            <p class="project-feature-desc">
+              Clicking any composition in the Project panel or timeline instantly populates all five properties into the panel without needing to open the slow modal settings dialog.
+            </p>
+          </div>
+
+          <div class="project-feature-card">
+            <span class="project-feature-num">02</span>
+            <h3 class="project-feature-title">Unified Single-Step Undo</h3>
+            <p class="project-feature-desc">
+              All changed parameters are batched into a single <code>app.beginUndoGroup</code> call. Pressing <code>Ctrl+Z</code> restores all previous comp settings simultaneously.
+            </p>
+          </div>
+
+          <div class="project-feature-card">
+            <span class="project-feature-num">03</span>
+            <h3 class="project-feature-title">Strict Timecode Validation</h3>
+            <p class="project-feature-desc">
+              Duration uses AE timecode format (<code>HH:MM:SS:FF</code>). Frame values (<code>FF</code>) are automatically validated against the active framerate to avoid invalid duration errors.
+            </p>
+          </div>
+
+          <div class="project-feature-card">
+            <span class="project-feature-num">04</span>
+            <h3 class="project-feature-title">Synchronized Color Picker</h3>
+            <p class="project-feature-desc">
+              Click the interactive color swatch to open the native OS color dialog, or type/paste hex codes directly into the <code>#RRGGBB</code> field with real-time two-way synchronization.
+            </p>
+          </div>
+
+          <div class="project-feature-card">
+            <span class="project-feature-num">05</span>
+            <h3 class="project-feature-title">Native AE Dark Theme</h3>
+            <p class="project-feature-desc">
+              Built with Adobe CEP standards to blend seamlessly into After Effects' default UI, with support for docking anywhere inside your workspace panels.
+            </p>
+          </div>
+
+          <div class="project-feature-card">
+            <span class="project-feature-num">06</span>
+            <h3 class="project-feature-title">Zero Bloat &amp; Fast Reset</h3>
+            <p class="project-feature-desc">
+              No heavy frameworks or dependencies. A single click of the "Reset" button discards any pending edits and immediately reloads current comp values.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Installation -->
+    <section class="project-section" id="install">
+      <div class="container">
+        <p class="sec-label">02 — Installation</p>
+        <h2 class="sec-title">Quick setup in Adobe After Effects.</h2>
+
+        <div class="project-step-list">
+          <div class="project-step-item">
+            <div class="project-step-num">1</div>
+            <div class="project-step-body">
+              <h4>Windows Automatic Installer</h4>
+              <p>Clone the repository and run the PowerShell script (no admin required). It sets <code>PlayerDebugMode = 1</code> in HKCU and copies the extension directly into <code>%APPDATA%\Adobe\CEP\extensions\Quick_Comp_Settings\</code>:</p>
+              <div class="project-code-box" style="margin: 10px 0 0;">
+                <pre>.\install.ps1</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-step-item">
+            <div class="project-step-num">2</div>
+            <div class="project-step-body">
+              <h4>Open Panel in After Effects</h4>
+              <p>Restart Adobe After Effects, then navigate to: <strong>Window → Extensions → Quick Comp Settings</strong>. Dock the panel anywhere in your workspace.</p>
+            </div>
+          </div>
+
+          <div class="project-step-item">
+            <div class="project-step-num">3</div>
+            <div class="project-step-body">
+              <h4>macOS Manual Installation</h4>
+              <p>Copy the panel folder to <code>~/Library/Application Support/Adobe/CEP/extensions/Quick_Comp_Settings/</code> and enable debug mode via Terminal:</p>
+              <div class="project-code-box" style="margin: 10px 0 0;">
+                <pre>defaults write com.adobe.CSXS.11 PlayerDebugMode 1</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Project Switcher & Footer -->
+  <aside class="project-nav-footer" aria-label="Explore other projects">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+      <div>
+        <p style="font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px;">Next Project</p>
+        <a href="/gfxtools/" style="font-size: 1.1rem; font-weight: 600; color: var(--text); text-decoration: none;">
+          GFX Tools &nbsp;→
+        </a>
+      </div>
+      <div>
+        <a href="/" class="btn-secondary">← Back to All Projects</a>
+      </div>
+    </div>
+  </aside>
+
+  <footer role="contentinfo">
+    <p class="footer-copy">© <span id="current-year"></span> Ganesh GFX</p>
+    <p class="footer-logo">GaneshGFX</p>
+    <p class="footer-gf">Gravity Films · Tech Lead</p>
+  </footer>
+
+  <script src="/script.js" defer></script>
+</body>
+
+</html>

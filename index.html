@@ -51,7 +51,7 @@
           "url": "https://www.instagram.com/gravityfilmsin/"
         },
         "description": "Creative professional and Tech Lead at Gravity Films. Filmmaker, VFX artist, web & app developer, graphic designer based in India.",
-        "knowsAbout": ["Filmmaking", "VFX", "CGI", "3D Animation", "Motion Graphics", "Web Development", "App Development", "Graphic Design", "Digital Marketing", "Color Grading", "Sound Design"],
+        "knowsAbout": ["Filmmaking", "VFX", "CGI", "3D Animation", "Motion Graphics", "Web Development", "App Development", "Graphic Design", "Digital Marketing", "Color Grading", "Sound Design", "Rust", "C++", "Electron", "Adobe CEP Extension Development", "WebGPU AI Inference"],
         "sameAs": [
           "https://github.com/ganeshgfx",
           "https://www.linkedin.com/in/ganeshgfx/",
@@ -309,18 +309,22 @@
           <div class="skill-group reveal reveal-delay-1">
             <div class="skill-group-header">
               <span class="skill-group-label">Technology &amp; Development</span>
-              <span class="skill-group-count">9 disciplines</span>
+              <span class="skill-group-count">13 disciplines</span>
             </div>
             <div class="skill-tags">
               <span class="skill-tag">Web Development</span>
               <span class="skill-tag">App Development</span>
               <span class="skill-tag">Software Solutions</span>
-              <span class="skill-tag">Android · Kotlin</span>
-              <span class="skill-tag">JavaScript</span>
-              <span class="skill-tag">HTML / CSS</span>
+              <span class="skill-tag">Rust</span>
+              <span class="skill-tag">C++ · Win32</span>
+              <span class="skill-tag">Electron · TypeScript</span>
+              <span class="skill-tag">WebGPU · ONNX AI</span>
+              <span class="skill-tag">Adobe CEP · ExtendScript</span>
+              <span class="skill-tag">NVENC · FFmpeg</span>
               <span class="skill-tag">React</span>
+              <span class="skill-tag">JavaScript / HTML / CSS</span>
+              <span class="skill-tag">Android · Kotlin</span>
               <span class="skill-tag">Git / GitHub</span>
-              <span class="skill-tag">Programming</span>
             </div>
           </div>
 
@@ -358,52 +362,122 @@
           <p class="project-card-desc">Commercial content creation and production house. Specialising in filmmaking,
             VFX, GFX, animation, sound design and digital marketing. As Tech Lead I oversee all technical and creative
             digital workflows — from concept through final delivery.</p>
+          <div class="project-card-tags">
+            <span>Filmmaking</span>
+            <span>VFX &amp; CGI</span>
+            <span>Sound Design</span>
+            <span>Tech Direction</span>
+          </div>
           <span class="project-card-arrow">View on Instagram &nbsp;→</span>
+        </a>
+
+        <!-- Featured: GFX Tools -->
+        <a href="./gfxtools/" id="proj-gfxtools" class="project-card featured" aria-label="GFX Tools">
+          <p class="project-card-num">02 — Windows App · Adobe CEP</p>
+          <h3 class="project-card-title">GFX Tools</h3>
+          <p class="project-card-desc">Native Windows application and Adobe CEP extension for Premiere Pro &amp; After Effects.
+            Right-click any Explorer folder to paste links and download media directly via yt-dlp. Features NVENC GPU-accelerated
+            video re-encoding and smart compression optimized for NLE timeline workflows.</p>
+          <div class="project-card-tags">
+            <span>Rust</span>
+            <span>Win32</span>
+            <span>NVENC GPU</span>
+            <span>yt-dlp</span>
+            <span>Adobe CEP</span>
+            <span>eframe/egui</span>
+          </div>
+          <span class="project-card-arrow">View Dedicated Page &nbsp;→</span>
+        </a>
+
+        <!-- Featured: Local AI Logo Remover -->
+        <a href="./local-ai-logo-remover/" id="proj-ai-remover" class="project-card featured" aria-label="Local AI Logo Remover">
+          <p class="project-card-num">03 — AI · Shell Extension</p>
+          <h3 class="project-card-title">Local AI Logo Remover</h3>
+          <p class="project-card-desc">High-performance offline desktop app integrated into Windows 10 &amp; 11 File Explorer
+            context menu (C++ COM IExplorerCommand &amp; MSIX). Uses ONNX FDnCNN models, WebGPU compute shaders, and WebCodecs
+            for local AI watermark detection and reverse alpha-blending removal from videos and images without cloud dependencies.</p>
+          <div class="project-card-tags">
+            <span>Electron</span>
+            <span>React · TypeScript</span>
+            <span>ONNX Runtime</span>
+            <span>WebGPU</span>
+            <span>C++ COM</span>
+            <span>MSIX</span>
+          </div>
+          <span class="project-card-arrow">View Dedicated Page &nbsp;→</span>
+        </a>
+
+        <!-- Quick Comp Settings -->
+        <a href="./quick-comp-settings/" id="proj-quickcomp" class="project-card" aria-label="Quick Comp Settings">
+          <p class="project-card-num">04 — Adobe After Effects</p>
+          <h3 class="project-card-title">Quick Comp Settings</h3>
+          <p class="project-card-desc">Adobe After Effects CEP panel for lightning-fast composition property adjustments.
+            Real-time editing of resolution, framerate, timecode duration (HH:MM:SS:FF), and background color with native color picker
+            and unified single-step undo.</p>
+          <div class="project-card-tags">
+            <span>Adobe CEP</span>
+            <span>ExtendScript</span>
+            <span>JavaScript</span>
+            <span>AE API</span>
+          </div>
+          <span class="project-card-arrow">View Dedicated Page &nbsp;→</span>
         </a>
 
         <!-- Algorithm Visualiser -->
         <a href="../sorts/" id="proj-sorts" class="project-card" aria-label="Algorithm Visualiser">
-          <p class="project-card-num">02 — Web App</p>
+          <p class="project-card-num">05 — Web App</p>
           <h3 class="project-card-title">Algorithm Visualiser</h3>
           <p class="project-card-desc">Interactive animations of sorting algorithms — built to learn and compare
             complexity visually.</p>
+          <div class="project-card-tags">
+            <span>JavaScript</span>
+            <span>Canvas</span>
+            <span>Algorithms</span>
+          </div>
           <span class="project-card-arrow">Explore &nbsp;→</span>
         </a>
 
         <!-- Browser Game -->
         <a href="../game/" id="proj-game" class="project-card" aria-label="Browser Game">
-          <p class="project-card-num">03 — Game</p>
+          <p class="project-card-num">06 — Game</p>
           <h3 class="project-card-title">Browser Game</h3>
           <p class="project-card-desc">A playable browser-based game built with vanilla JavaScript. No downloads, no
             installs.</p>
+          <div class="project-card-tags">
+            <span>JavaScript</span>
+            <span>HTML5 Canvas</span>
+            <span>Game Dev</span>
+          </div>
           <span class="project-card-arrow">Play now &nbsp;→</span>
         </a>
 
         <!-- Experiments -->
         <a href="../tt/" id="proj-tt" class="project-card" aria-label="Experiments">
-          <p class="project-card-num">04 — Sandbox</p>
+          <p class="project-card-num">07 — Sandbox</p>
           <h3 class="project-card-title">Experiments</h3>
           <p class="project-card-desc">Side experiments, prototypes and tools — a sandbox for trying new ideas across
             code and design.</p>
+          <div class="project-card-tags">
+            <span>Prototypes</span>
+            <span>Interactive</span>
+            <span>R&amp;D</span>
+          </div>
           <span class="project-card-arrow">Explore &nbsp;→</span>
         </a>
 
-        <!-- Sapna -->
-        <a href="../sapna/" id="proj-sapna" class="project-card" aria-label="Sapna">
-          <p class="project-card-num">05 — Creative</p>
-          <h3 class="project-card-title">Sapna</h3>
-          <p class="project-card-desc">A creative project — part of the broader portfolio of cinematic and digital work
-            in progress.</p>
-          <span class="project-card-arrow">View &nbsp;→</span>
-        </a>
-
         <!-- GitHub -->
-        <a href="https://github.com/ganeshgfx" id="proj-github" target="_blank" rel="noopener" class="project-card"
+        <a href="https://github.com/ganeshgfx" id="proj-github" target="_blank" rel="noopener" class="project-card featured"
           aria-label="More on GitHub">
-          <p class="project-card-num">06 — Open Source</p>
+          <p class="project-card-num">08 — Open Source</p>
           <h3 class="project-card-title">GitHub Repos</h3>
-          <p class="project-card-desc">Browse all open-source repositories, code experiments and contributions on
-            GitHub.</p>
+          <p class="project-card-desc">Browse all open-source repositories, developer tools, desktop utilities, and
+            contributions on GitHub.</p>
+          <div class="project-card-tags">
+            <span>Open Source</span>
+            <span>Rust</span>
+            <span>TypeScript</span>
+            <span>C++</span>
+          </div>
           <span class="project-card-arrow">github.com/ganeshgfx &nbsp;→</span>
         </a>
       </div>

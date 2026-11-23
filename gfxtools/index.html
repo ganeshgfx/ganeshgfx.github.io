@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GFX Tools — Context-Menu Video Downloader & NLE Transcoder · GaneshGFX</title>
+  <meta name="description"
+    content="Native Windows desktop app & Adobe CEP panel by Ganesh Ghutiya. Right-click any Explorer folder to download video from clipboard URL via yt-dlp, with GPU NVENC transcoding for Premiere Pro and After Effects." />
+  <meta name="keywords"
+    content="GFX Tools, GaneshGFX, yt-dlp, Windows Explorer context menu, NVENC, video downloader, Adobe CEP, Premiere Pro, After Effects, Rust, Win32" />
+  <link rel="canonical" href="https://ganeshgfx.github.io/gfxtools/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="GFX Tools — Video Downloader & NLE Transcoder" />
+  <meta property="og:description"
+    content="Right-click Explorer video downloader and NVENC GPU converter for Premiere Pro, After Effects, and DaVinci Resolve." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://ganeshgfx.github.io/gfxtools/" />
+  <meta property="og:image" content="https://ganeshgfx.github.io/assets/profileHD.jpg" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+  <canvas id="noise-canvas" aria-hidden="true"></canvas>
+
+  <!-- Navigation -->
+  <header class="project-page-nav" role="banner">
+    <div class="nav-container">
+      <a href="/" class="nav-back-link" id="nav-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+        </svg>
+        Back to Portfolio
+      </a>
+      <a href="https://github.com/ganeshgfx/gfxtools" target="_blank" rel="noopener" class="nav-repo-btn" id="nav-github-repo">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+        </svg>
+        GitHub Repository
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main>
+    <section class="project-hero">
+      <div class="container">
+        <div class="project-eyebrow">
+          <span class="project-eyebrow-dot" aria-hidden="true"></span>
+          Windows App · Adobe CEP Extension · Open Source
+        </div>
+        <h1 class="project-hero-title">GFX Tools</h1>
+        <p class="project-hero-lead">
+          A native Windows desktop application and Adobe Premiere / After Effects CEP panel. Adds a
+          <strong>"Paste link"</strong> context menu item to Windows File Explorer to download videos from clipboard
+          URLs directly into the active folder with NVENC GPU-accelerated video re-encoding for editors.
+        </p>
+
+        <div class="project-hero-actions">
+          <a href="https://github.com/ganeshgfx/gfxtools" target="_blank" rel="noopener" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+            </svg>
+            View on GitHub
+          </a>
+          <a href="#install" class="btn-secondary">Installation &amp; Commands</a>
+          <a href="#features" class="btn-secondary">Explore Features</a>
+        </div>
+
+        <div class="project-specs-grid" aria-label="Project technical specifications">
+          <div class="project-spec-card">
+            <p class="project-spec-label">Download Engines</p>
+            <p class="project-spec-value">yt-dlp &amp; gallery-dl</p>
+          </div>
+          <div class="project-spec-card">
+            <p class="project-spec-label">GPU Acceleration</p>
+            <p class="project-spec-value">NVIDIA NVENC (h264 / hevc)</p>
+          </div>
+          <div class="project-spec-card">
+            <p class="project-spec-label">Integrations</p>
+            <p class="project-spec-value">Win32 Context Menu &amp; Adobe CEP</p>
+          </div>
+          <div class="project-spec-card">
+            <p class="project-spec-label">Tech Stack</p>
+            <p class="project-spec-value">Rust · egui · Win32 · FFmpeg</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="project-section" id="features">
+      <div class="container">
+        <p class="sec-label">01 — Features</p>
+        <h2 class="sec-title">Engineered for video professionals.</h2>
+
+        <div class="project-feature-grid">
+          <div class="project-feature-card">
+            <span class="project-feature-num">01</span>
+            <h3 class="project-feature-title">Explorer "Paste link" Menu</h3>
+            <p class="project-feature-desc">
+              Right-click inside any Windows Explorer folder to instantly download video from a clipboard URL (YouTube, Pinterest, Instagram, Vimeo, and 1000+ sites).
+            </p>
+          </div>
+
+          <div class="project-feature-card">
+            <span class="project-feature-num">02</span>
+            <h3 class="project-feature-title">Shift+Click Advanced Options</h3>
+            <p class="project-feature-desc">
+              Hold Shift while clicking to open an eframe/egui GUI dialog to configure resolution, audio-only / video-only extraction, format bitrate, and trim start/end timestamps.
+            </p>
+          </div>
+
+          <div class="project-feature-card">
+            <span class="project-feature-num">03</span>
+            <h3 class="project-feature-title">NVENC GPU Acceleration</h3>
+            <p class="project-feature-desc">
+              Hardware-accelerated encoding via NVIDIA NVENC (<code>h264_nvenc</code> and <code>hevc_nvenc</code>), with automatic fallback to CPU (<code>libx264</code> / <code>libx265</code>).
+            </p>
+          </div>
+
+          <div class="project-feature-card">
+            <span class="project-feature-num">04</span>
+            <h3 class="project-feature-title">NLE Compatibility Transcoding</h3>
+            <p class="project-feature-desc">
+              Re-encodes downloaded media to standard H.264 + AAC MP4 with non-variable framerates, ensuring zero audio desync or import glitches inside Premiere Pro and DaVinci Resolve.
+            </p>
+          </div>
+
+          <div class="project-feature-card">
+            <span class="project-feature-num">05</span>
+            <h3 class="project-feature-title">Adobe CEP Plugin Panel</h3>
+            <p class="project-feature-desc">
+              Includes a native CEP extension panel for Premiere Pro and After Effects: paste a URL directly within your editing workspace, download, and auto-import into the project bin.
+            </p>
+          </div>
+
+          <div class="project-feature-card">
+            <span class="project-feature-num">06</span>
+            <h3 class="project-feature-title">Batch Video Post-Processing</h3>
+            <p class="project-feature-desc">
+              Select multiple video files in Explorer and right-click "Convert to Compatible" or "Compress". All files batch-process concurrently in a unified dark Win32 progress GUI.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture -->
+    <section class="project-section" id="architecture">
+      <div class="container">
+        <p class="sec-label">02 — Architecture</p>
+        <h2 class="sec-title">Component design &amp; system flow.</h2>
+
+        <div class="project-code-box">
+<pre>
+                    +----------------------------------------------+
+                    |              gfx-tools.exe                   |
+                    |  (Windows subsystem = "windows" in release)  |
+                    +------+---------------------------+-----------+
+                           |                           |
+              CLI dispatch (cli.rs)         Explorer context-menu
+              parses --flags or bare          invokes exe with "%V"
+              directory argument              (folder path / file path)
+                           |                           |
+           +---------------+---------------------------+
+           v
+  +------------------+    +------------------+    +------------------+
+  |   download_gui   |    |   settings_gui   |    |   context_menu   |
+  |   (Win32 GUI)    |    |   (eframe/egui)  |    |   (Registry)     |
+  |                  |    |                  |    |                  |
+  | progress window  |    | config editor    |    | install/uninstall|
+  | worker thread    |    | file pickers     |    | HKCU registry    |
+  +--------+---------+    +------------------+    +------------------+
+           |
+           v
+  +------------------+    +------------------+
+  |    downloader    |    |   post_process   |
+  |   (yt-dlp)       |--->|   (ffmpeg/NVENC) |
+  |   (gallery-dl)   |    | H.264 / HEVC MP4 |
+  +------------------+    +------------------+
+</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Installation -->
+    <section class="project-section" id="install">
+      <div class="container">
+        <p class="sec-label">03 — Installation</p>
+        <h2 class="sec-title">Get GFX Tools on Windows.</h2>
+
+        <div class="project-step-list">
+          <div class="project-step-item">
+            <div class="project-step-num">A</div>
+            <div class="project-step-body">
+              <h4>Windows Package Manager (Winget)</h4>
+              <p>Install via Windows Terminal with automatic updates and PATH registration:</p>
+              <div class="project-code-box" style="margin: 10px 0 0;">
+                <pre>winget install GaneshGFX.GFXTools</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-step-item">
+            <div class="project-step-num">B</div>
+            <div class="project-step-body">
+              <h4>Chocolatey Package</h4>
+              <p>One-line installation for Chocolatey users:</p>
+              <div class="project-code-box" style="margin: 10px 0 0;">
+                <pre>choco install gfxtools</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-step-item">
+            <div class="project-step-num">C</div>
+            <div class="project-step-body">
+              <h4>Manual Inno Setup Installer</h4>
+              <p>Download <code>GFXTools_Installer.exe</code> from the GitHub releases page. The installer automatically downloads yt-dlp, FFmpeg, and gallery-dl binaries into your per-user folder (no administrator privileges needed).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Project Switcher & Footer -->
+  <aside class="project-nav-footer" aria-label="Explore other projects">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+      <div>
+        <p style="font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px;">Next Project</p>
+        <a href="/local-ai-logo-remover/" style="font-size: 1.1rem; font-weight: 600; color: var(--text); text-decoration: none;">
+          Local AI Logo Remover &nbsp;→
+        </a>
+      </div>
+      <div>
+        <a href="/" class="btn-secondary">← Back to All Projects</a>
+      </div>
+    </div>
+  </aside>
+
+  <footer role="contentinfo">
+    <p class="footer-copy">© <span id="current-year"></span> Ganesh GFX</p>
+    <p class="footer-logo">GaneshGFX</p>
+    <p class="footer-gf">Gravity Films · Tech Lead</p>
+  </footer>
+
+  <script src="/script.js" defer></script>
+</body>
+
+</html>

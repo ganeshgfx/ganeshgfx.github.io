@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Local AI Logo Remover — Windows Explorer Context Menu & WebGPU AI · GaneshGFX</title>
+  <meta name="description"
+    content="High-performance Windows desktop app by Ganesh Ghutiya with Windows 10 & 11 File Explorer integration. Removes AI watermarks locally and offline using ONNX models and WebGPU compute shaders." />
+  <meta name="keywords"
+    content="Local AI Logo Remover, AI Watermark Remover, GaneshGFX, WebGPU, ONNX Runtime, Windows 11 context menu, MSIX Sparse Package, IExplorerCommand, Electron, React" />
+  <link rel="canonical" href="https://ganeshgfx.github.io/local-ai-logo-remover/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Local AI Logo Remover — Windows Shell & WebGPU AI" />
+  <meta property="og:description"
+    content="Offline video watermark detection and reverse alpha-blending removal directly from Windows File Explorer." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://ganeshgfx.github.io/local-ai-logo-remover/" />
+  <meta property="og:image" content="https://ganeshgfx.github.io/assets/profileHD.jpg" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body>
+  <canvas id="noise-canvas" aria-hidden="true"></canvas>
+
+  <!-- Navigation -->
+  <header class="project-page-nav" role="banner">
+    <div class="nav-container">
+      <a href="/" class="nav-back-link" id="nav-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+        </svg>
+        Back to Portfolio
+      </a>
+      <a href="https://github.com/ganeshgfx/Local-Ai-Logo-Remover" target="_blank" rel="noopener" class="nav-repo-btn" id="nav-github-repo">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+        </svg>
+        GitHub Repository
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main>
+    <section class="project-hero">
+      <div class="container">
+        <div class="project-eyebrow">
+          <span class="project-eyebrow-dot" aria-hidden="true"></span>
+          Windows 10/11 Shell · WebGPU AI · Offline &amp; Private
+        </div>
+        <h1 class="project-hero-title">Local AI Logo Remover</h1>
+        <p class="project-hero-lead">
+          A high-performance Windows desktop application that integrates directly into the Windows File Explorer
+          right-click context menu (Windows 10 &amp; Windows 11 modern context menu) to detect and remove AI-generated
+          watermarks from videos and images locally and offline without cloud dependencies.
+        </p>
+
+        <div class="project-hero-actions">
+          <a href="https://github.com/ganeshgfx/Local-Ai-Logo-Remover/releases/download/v1.0.1/AI.Watermark.Remover.Setup.1.0.1.exe" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+            </svg>
+            Download v1.0.1 (.exe)
+          </a>
+          <a href="https://github.com/ganeshgfx/Local-Ai-Logo-Remover" target="_blank" rel="noopener" class="btn-secondary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+            </svg>
+            View on GitHub
+          </a>
+          <a href="#install" class="btn-secondary">Installation &amp; Choco</a>
+          <a href="#features" class="btn-secondary">Capabilities</a>
+        </div>
+
+        <div class="project-specs-grid" aria-label="Project technical specifications">
+          <div class="project-spec-card">
+            <p class="project-spec-label">GPU Acceleration</p>
+            <p class="project-spec-value">WebGPU Compute Shaders (WGSL)</p>
+          </div>
+          <div class="project-spec-card">
+            <p class="project-spec-label">Deep Learning Core</p>
+            <p class="project-spec-value">ONNX Runtime (AllenK FDnCNN)</p>
+          </div>
+          <div class="project-spec-card">
+            <p class="project-spec-label">Shell Integration</p>
+            <p class="project-spec-value">C++ COM &amp; MSIX Sparse Package</p>
+          </div>
+          <div class="project-spec-card">
+            <p class="project-spec-label">Supported Media</p>
+            <p class="project-spec-value">Videos &amp; Images (.mp4, .png, .webp...)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="project-section" id="features">
+      <div class="container">
+        <p class="sec-label">01 — Features</p>
+        <h2 class="sec-title">Local deep learning meets Windows shell.</h2>
+
+        <div class="project-feature-grid">
+          <div class="project-feature-card">
+            <span class="project-feature-num">01</span>
+            <h3 class="project-feature-title">Windows 11 Modern Context Menu</h3>
+            <p class="project-feature-desc">
+              Integrated directly into Windows 11's modern right-click menu using a native C++ COM component implementing <code>IExplorerCommand</code> and packaged via an MSIX Sparse Package.
+            </p>
+          </div>
+
+          <div class="project-feature-card">
+            <span class="project-feature-num">02</span>
+            <h3 class="project-feature-title">Windows 10 Legacy Integration</h3>
+            <p class="project-feature-desc">
+              Includes automated PowerShell registration scripts (<code>register_win10.ps1</code>) for multi-file right-click execution directly within Windows 10 Explorer.
+            </p>
+          </div>
+
+          <div class="project-feature-card">
+            <span class="project-feature-num">03</span>
+            <h3 class="project-feature-title">WebGPU Compute Shaders</h3>
+            <p class="project-feature-desc">
+              Custom WGSL compute shader pipeline (<code>webgpuPixelOps.ts</code>) performs hardware-accelerated reverse alpha-blending pixel operations with zero CPU bottlenecks.
+            </p>
+          </div>
+
+          <div class="project-feature-card">
+            <span class="project-feature-num">04</span>
+            <h3 class="project-feature-title">Bundled AllenK FDnCNN Models</h3>
+            <p class="project-feature-desc">
+              Includes pre-quantized models: <code>model_core_fp32_86x74.onnx</code> (Text watermarks), <code>model_core_fp32_104.onnx</code> (Watermarks ≤ 56px), and <code>model_core_fp32_200.onnx</code> (Default/large).
+            </p>
+          </div>
+
+          <div class="project-feature-card">
+            <span class="project-feature-num">05</span>
+            <h3 class="project-feature-title">100% Offline &amp; Private</h3>
+            <p class="project-feature-desc">
+              No cloud servers, no subscription APIs, and no telemetry. All video frames are inspected, decoded, processed, and reconstructed strictly inside your local GPU/RAM.
+            </p>
+          </div>
+
+          <div class="project-feature-card">
+            <span class="project-feature-num">06</span>
+            <h3 class="project-feature-title">Batch Orchestrator &amp; Fallbacks</h3>
+            <p class="project-feature-desc">
+              Queue multiple video files, track progress in real-time, cancel anytime, and fall back to multi-threaded WASM SIMD if a WebGPU-compatible GPU is unavailable.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture -->
+    <section class="project-section" id="architecture">
+      <div class="container">
+        <p class="sec-label">02 — Architecture</p>
+        <h2 class="sec-title">Directory hierarchy &amp; execution flow.</h2>
+
+        <div class="project-code-box">
+<pre>
+ai-watermark-remover/
+├── native/                         # Windows C++ Shell Extension & Manifests
+│   ├── CMakeLists.txt              # CMake configuration for shell extension DLL
+│   ├── dllmain.cpp                 # DLL entry point & COM ClassFactory
+│   ├── GeminiRemoverCommand.h      # IExplorerCommand declaration
+│   ├── GeminiRemoverCommand.cpp    # Multi-file collection & app invocation
+│   └── registry/
+│       ├── register_win10.ps1      # Windows 10 shell integration script
+│       └── SparsePackage/          # Windows 11 MSIX Sparse Package manifest
+├── resources/
+│   ├── models/allenk-fdncnn/       # Bundled ONNX models (104, 200, 86x74)
+│   └── onnxruntime/                # Bundled ORT WASM & WebGPU runtimes
+└── src/
+    ├── engine/
+    │   ├── batchOrchestrator.ts    # Sequential batch processing & cancellation
+    │   ├── gpuPolicy.ts            # WebGPU & hardware codec capability detection
+    │   ├── modelLoader.ts          # Singleton ONNX session cache
+    │   ├── onnxBridge.ts           # Bridge to upstream FDnCNN runtime
+    │   ├── processingPipeline.ts   # Video inspection, watermark detection & removal
+    │   └── webgpuPixelOps.ts       # WGSL compute shader for reverse alpha blending
+    ├── main/                       # Electron main process & manifest IPC
+    └── renderer/                   # React + Vite processing UI
+</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Installation & Setup -->
+    <section class="project-section" id="install">
+      <div class="container">
+        <p class="sec-label">03 — Installation &amp; Setup</p>
+        <h2 class="sec-title">Install AI Watermark Remover on Windows.</h2>
+
+        <div class="project-step-list">
+          <div class="project-step-item">
+            <div class="project-step-num">A</div>
+            <div class="project-step-body">
+              <h4>Method 1: Windows Installer (v1.0.1 Recommended)</h4>
+              <p>Self-contained installer with bundled ONNX models and runtimes (Windows 10/11 64-bit):</p>
+              <div style="margin: 12px 0 16px;">
+                <a href="https://github.com/ganeshgfx/Local-Ai-Logo-Remover/releases/download/v1.0.1/AI.Watermark.Remover.Setup.1.0.1.exe" class="btn-primary" style="display: inline-flex;">
+                  Download Setup 1.0.1 (.exe)
+                </a>
+              </div>
+              <p style="font-size: .76rem; color: var(--muted); font-family: monospace;">
+                SHA-256: B4A0D3F494315F62CB9897F37C3E28E806B7B2F0FD0943229082D6503B6178D2
+              </p>
+            </div>
+          </div>
+
+          <div class="project-step-item">
+            <div class="project-step-num">B</div>
+            <div class="project-step-body">
+              <h4>Method 2: Chocolatey Package</h4>
+              <p>Install via Chocolatey package manager in Windows Terminal:</p>
+              <div class="project-code-box" style="margin: 10px 0 0;">
+                <pre>choco install ai-watermark-remover</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-step-item">
+            <div class="project-step-num">C</div>
+            <div class="project-step-body">
+              <h4>Method 3: Install from Source (Development)</h4>
+              <p>Requires Node.js v18/v20+ and Git:</p>
+              <div class="project-code-box" style="margin: 10px 0 0;">
+                <pre># 1. Clone repository
+git clone https://github.com/ganeshgfx/Local-Ai-Logo-Remover.git
+cd Local-Ai-Logo-Remover
+
+# 2. Install dependencies &amp; start dev server
+npm install
+npm run dev
+
+# 3. Build Windows NSIS installer
+npm run build:win</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-step-item">
+            <div class="project-step-num">D</div>
+            <div class="project-step-body">
+              <h4>Windows 11 Explorer Context Menu (Modern MSIX)</h4>
+              <p>Registers native C++ COM extension into modern Windows 11 right-click menu:</p>
+              <div class="project-code-box" style="margin: 10px 0 0;">
+                <pre>powershell -ExecutionPolicy Bypass -File native\registry\SparsePackage\register_win11.ps1</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-step-item">
+            <div class="project-step-num">E</div>
+            <div class="project-step-body">
+              <h4>Windows 10 Explorer Context Menu (Legacy Shell)</h4>
+              <p>Registers multi-file context menu handler in Windows 10:</p>
+              <div class="project-code-box" style="margin: 10px 0 0;">
+                <pre>powershell -ExecutionPolicy Bypass -File native\registry\register_win10.ps1</pre>
+              </div>
+              <p style="margin-top: 10px; font-size: .8rem; color: var(--muted);">To unregister: <code>powershell -ExecutionPolicy Bypass -File native\registry\unregister_win10.ps1</code></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Project Switcher & Footer -->
+  <aside class="project-nav-footer" aria-label="Explore other projects">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+      <div>
+        <p style="font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px;">Next Project</p>
+        <a href="/quick-comp-settings/" style="font-size: 1.1rem; font-weight: 600; color: var(--text); text-decoration: none;">
+          Quick Comp Settings &nbsp;→
+        </a>
+      </div>
+      <div>
+        <a href="/" class="btn-secondary">← Back to All Projects</a>
+      </div>
+    </div>
+  </aside>
+
+  <footer role="contentinfo">
+    <p class="footer-copy">© <span id="current-year"></span> Ganesh GFX</p>
+    <p class="footer-logo">GaneshGFX</p>
+    <p class="footer-gf">Gravity Films · Tech Lead</p>
+  </footer>
+
+  <script src="/script.js" defer></script>
+</body>
+
+</html>
